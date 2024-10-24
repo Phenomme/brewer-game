@@ -1,5 +1,5 @@
 const bodyElement = document.querySelector("body")
-const h1Element = document.createElement("h1")
+const page1h1Element = document.createElement("h1")
 const  inputElement = document.createElement("input")
 const addNameButton = document.createElement("button")
 
@@ -7,8 +7,8 @@ const addNameButton = document.createElement("button")
 
 
 /*-------------------------------- Constants --------------------------------*/
-let userName = inputElement.value
-
+let userName = ""
+let secondScreenh1 = "The Crash"
 
 
 
@@ -16,7 +16,7 @@ let userName = inputElement.value
 
 /*-------------------------------- Variables --------------------------------*/
 
-h1Element.textContent = "Cadet what is you name?: "
+page1h1Element.textContent = "Cadet what is you name?: "
 addNameButton.textContent = "Next"
 
 
@@ -42,25 +42,33 @@ addNameButton.addEventListener("click", handleGetUserName)
 
 /*-------------------------------- Functions --------------------------------*/
 const firstScreen = () => {
-    bodyElement.appendChild(h1Element)
-    h1Element.append(inputElement)
+    bodyElement.appendChild(page1h1Element)
+    page1h1Element.append(inputElement)
     bodyElement.appendChild(addNameButton)
 }
 
 function handleGetUserName() {
-    console.log(inputElement.value)
+    userName = inputElement.value
+    isNameAdded()
 }
-const clearPage = (...elements) => {
-elements.forEach(element => {
-    bodyElement.removeChild(element)
-});
+const clearPage = () => {
+    document.body.innerHTML = ""
 } 
-
-
-
-
-
-
+const isNameAdded = () => {
+    if (inputElement.value ) {
+        clearPage()
+        secondScreen()
+    }
+};
+const secondScreen = () => {
+ page1h1Element.innerText = secondScreenh1   
+bodyElement.appendChild(page1h1Element)
+const secondScreenPara = document.createElement("p")
+secondScreenPara.innerText = `You wake up in your wrecked spaceship ${userName}, alarms blaring,
+with limited time to act.`
+bodyElement.appendChild(secondScreenPara)
+console.log(userName, "dvsv")
+}
 
 
 
@@ -68,4 +76,5 @@ elements.forEach(element => {
 
 firstScreen()
 handleGetUserName()
-clearPage(h1Element, inputElement, addNameButton)
+// clearPage()
+isNameAdded()
