@@ -68,6 +68,7 @@ secondScreenPara.innerText = `You wake up in your wrecked spaceship ${userName},
 with limited time to act.`
 bodyElement.appendChild(secondScreenPara)
 console.log(userName, "dvsv")
+
 }
 
 
