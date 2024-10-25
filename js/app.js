@@ -15,7 +15,7 @@ const buttonContainer = document.createElement('div')
 let userName = ""
 let secondScreenh1 = "The Crash"
 let answerToTheFirstOption = '';
-
+let answerToTheSecondOption = '';
 
 
 
@@ -81,6 +81,20 @@ const handleFirstAnswer = (event) => {
     
 }
 
+const handleSecondAnswer = (event) => {
+    
+    const selectedOptionValue = event.target.id
+    console.log(selectedOptionValue)
+    if(selectedOptionValue === 'secondption2') {
+        answerToTheSecondOption = selectedOptionValue
+        isSecondQuestionAnswered(selectedOptionValue)
+    } else if(selectedOptionValue === 'secondOption2') {
+        answerToTheSecondOption = selectedOptionValue
+        isSecondQuestionAnswered(selectedOptionValue)
+    }
+    
+}
+
 const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
     
     if(answerToTheFirstOptionParameter ===  'firstOption1') {
@@ -109,8 +123,9 @@ const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
     }
 }
 
-const isSecondQuestionAnswered = () => {
+const isSecondQuestionAnswered = (answerToTheSecondOptionParameter) => {
 
+    console.log(answerToTheSecondOptionParameter)
     if(answerToTheSecondOptionParameter ===  'firstOption2') {
         clearPage()
         //go the next step
@@ -173,6 +188,7 @@ handleOptionCreation('Search the Wreckage', 'Exit Wreckage', 'firstOption1', 'se
 
 buttonContainer.addEventListener('click', handleFirstAnswer)
 console.log(buttonContainer)
+buttonContainer.addEventListener('click', handleSecondAnswer)
 
 }
 
