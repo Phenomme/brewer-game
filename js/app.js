@@ -15,15 +15,10 @@ let userName = ""
 let secondScreenh1 = ""
 let answerToTheFirstOption = '';
 let answerToTheSecondOption = '';
-<<<<<<< HEAD
 let answerToTheThirdOption = ''
 
 let win = 0
 let lose = 0
-=======
-let answerToTheThirdOption = '';
-
->>>>>>> ee6dedf28d40a86a708a2b17c850171c10f83834
 
 /*-------------------------------- Variables --------------------------------*/
 
@@ -91,41 +86,9 @@ function handleGetUserName() {
     }
 }
 
-<<<<<<< HEAD
 
 //buttons
 const handleCrash = event => {
-=======
-const handleSecondAnswer = (event) => {
-    
-    const selectedOptionValue = event.target.id
-    console.log(selectedOptionValue)
-    if(selectedOptionValue === 'firstOption2') {
-        answerToTheSecondOption = selectedOptionValue
-        isSecondQuestionAnswered(selectedOptionValue)
-    } else if(selectedOptionValue === 'secondOption2') {
-        answerToTheSecondOption = selectedOptionValue
-        isSecondQuestionAnswered(selectedOptionValue)
-    }
-    
-}
-
-const handleThirdAnswer = (event) => {
-    
-    const selectedOptionValue = event.target.id
-    console.log(selectedOptionValue)
-    if(selectedOptionValue === 'firstOption3') {
-        answerToTheThirdOption = selectedOptionValue
-        isThirdQuestionAnswered(selectedOptionValue)
-    } else if(selectedOptionValue === 'secondOption3') {
-        answerToTheThirdOption = selectedOptionValue
-        isThirdQuestionAnswered(selectedOptionValue)
-    }
-    
-}
-
-const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
->>>>>>> ee6dedf28d40a86a708a2b17c850171c10f83834
     
     const option = event.target.id
     //'searchWreckage', 'exitWreckage'
@@ -137,7 +100,6 @@ const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
     } else if (option === exitWreckage) {
         answerToTheFirstOption = exitWreckage
         clearPage()
-<<<<<<< HEAD
         thirdScreen()
     }
 }
@@ -236,61 +198,6 @@ const handlePlayAgain = (event) => {
 }
 
 const handleOptionCreation = (optionButton1Text, optionButton2Text, choice, choice2) => {
-=======
-        //go the next step
-        page1h1Element.innerText = `Alien Creature`
-        
-        pageh2Element.innerText = 
-        `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
-        
-
-
-        h3Question.innerHTML = 'Enter the cave(leads to new challenges inside). or Search for a new spot(danger of exposure to elements).'
-
-
-        
-
-        bodyElement.appendChild(page1h1Element)
-        bodyElement.appendChild(pageh2Element)
-        bodyElement.appendChild(h3Question)
-
-        handleOptionCreation('Enter cave', 'Search for new spot', 'firstOption3', 'secondOption3')
-
-
-    }
-}
-
-
-
-const isThirdQuestionAnswered = (answerToTheThirdOptionParameter) => {
-    console.log(answerToTheThirdOptionParameter, "test test")
-    if(answerToTheThirdOptionParameter ===  'firstOption3') {
-        clearPage()
-        // go the next step
-        page1h1Element.innerText = `The Encounter`
-        
-        pageh2Element.innerText = 
-        `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
-        
-
-
-        h3Question.innerHTML = 'Enter the cave(leads to new challenges inside). or Search for a new spot(danger of exposure to elements).'
-
-
-        
-
-        bodyElement.appendChild(page1h1Element)
-        bodyElement.appendChild(pageh2Element)
-        bodyElement.appendChild(h3Question)
-
-        handleOptionCreation('Enter cave', 'Search for new spot', 'firstOption4', 'secondOption4')
-        
-
-    }
-}
-
-const handleOptionCreation = (optionButton1Text, optionButton2Text, firstChoice, secondChoice) => {
->>>>>>> ee6dedf28d40a86a708a2b17c850171c10f83834
     
 
 
@@ -327,20 +234,9 @@ const firstScreen = () => {
     //addNameButton
     bodyElement.appendChild(addNameButton)
 
-<<<<<<< HEAD
     //added the first event
     addNameButton.addEventListener("click", handleGetUserName)
 
-=======
-
-
-
-
-buttonContainer.addEventListener('click', handleFirstAnswer)
-console.log(buttonContainer)
-buttonContainer.addEventListener('click', handleSecondAnswer)
-buttonContainer.addEventListener('click', handleThirdAnswer)
->>>>>>> ee6dedf28d40a86a708a2b17c850171c10f83834
 }
 
 
@@ -591,113 +487,3 @@ const fifthScreen = () => {
 }
 
 firstScreen()
-<<<<<<< HEAD
-
-// const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
-    
-//     console.log(answerToTheFirstOptionParameter)
-//     if(answerToTheFirstOptionParameter ===  'firstOption1') {
-//         clearPage()
-//         //go the next step
-//         page1h1Element.innerText = `Search for Oxygen`
-        
-//         pageh2Element.innerText = 
-//         `${userName} you find the oxygen tank, but night is approaching faster than expected
-//         do you leave the wreckage to search for shelter or stay inside ?`
-        
-
-
-//         h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
-
-
-//         bodyElement.appendChild(page1h1Element)
-//         bodyElement.appendChild(pageh2Element)
-//         bodyElement.appendChild(h3Question)
-
-//         //handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption2', 'secondOption2')
-
-
-//     }
-// }
-
-// const isSecondQuestionAnswered = (answerToTheSecondOptionParameter) => {
-
-//     console.log(answerToTheSecondOptionParameter, 'test')
-//     if(answerToTheSecondOption ===  'firstOption2') {
-//         clearPage()
-//         //go the next step
-//         page1h1Element.innerText = `Alien Creature`
-        
-//         pageh2Element.innerText = 
-//         `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
-        
-//         h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
-
-//         bodyElement.appendChild(page1h1Element)
-//         bodyElement.appendChild(pageh2Element)
-//         bodyElement.appendChild(h3Question)
-
-//         handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption3', 'secondOption3')
-
-
-//     }
-// }
-
-
-// const handleFirstAnswer = event => {
-    
-//     const selectedOptionValue = event.target.id
-    
-//     if(selectedOptionValue === 'firstOption1') {
-//         answerToTheFirstOption = selectedOptionValue
-
-//         page1h1Element.innerText = `Search for Oxygen`
-        
-//         pageh2Element.innerText = 
-//         `${userName} you find the oxygen tank, but night is approaching faster than expected
-//         do you leave the wreckage to search for shelter or stay inside ?`
-        
-
-
-//         h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
-
-//     } else if(selectedOptionValue === 'secondOption1') {
-//         answerToTheFirstOption = selectedOptionValue
-
-//     }
-    
-// }
-
-
-// const isNameAdded = () => {
-//     console.log(isNameAdded)
-//     if (userName !== "") {
-//         console.log(userName)
-//         clearPage()
-//         secondScreen()
-//     }
-// };
-
-
-
-// const handleSecondAnswer = event => {
-    
-//     const selectedOptionValue = event.target.id
-
-    
-//     if(selectedOptionValue === 'firstOption2') {
-//         answerToTheSecondOption = selectedOptionValue
-//         isSecondQuestionAnswered(selectedOptionValue)
-//     } else if(selectedOptionValue === 'secondOption2') {
-//         answerToTheSecondOption = selectedOptionValue
-//         isSecondQuestionAnswered(selectedOptionValue)
-//     }
-// }
-=======
-handleGetUserName()
-// clearPage()
-isNameAdded()
-isFirstQuestionAnswered()
-isSecondQuestionAnswered()
-isThirdQuestionAnswered()
->>>>>>> ee6dedf28d40a86a708a2b17c850171c10f83834
