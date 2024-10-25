@@ -1,157 +1,203 @@
 const bodyElement = document.querySelector("body")
-const page1h1Element = document.createElement("h1")
+const pageH1Header = document.createElement("h1")
 const pageh2Element = document.createElement("h2")
 const inputElement = document.createElement("input")
 const addNameButton = document.createElement("button")
-const h3Question = document.createElement('h3')
+const h3Header = document.createElement('h3')
 const optionButton1 = document.createElement('button')
 const optionButton2 = document.createElement('button')
 const buttonContainer = document.createElement('div')
-    
+const screenParagraph = document.createElement("p")
 
-
-
+const goodByText = document.createElement('p')
 /*-------------------------------- Constants --------------------------------*/
 let userName = ""
-let secondScreenh1 = "The Crash"
+let secondScreenh1 = ""
 let answerToTheFirstOption = '';
 let answerToTheSecondOption = '';
+let answerToTheThirdOption = ''
 
-
+let win = 0
+let lose = 0
 
 /*-------------------------------- Variables --------------------------------*/
 
-page1h1Element.textContent = "Cadet what is you name?: "
+pageH1Header.textContent = "Cadet what is you name?: "
 addNameButton.textContent = "Next"
 
 
+//'searchWreckage', 'exitWreckage'
+const searchWreckage = 'searchWreckage'
+const exitWreckage = 'exitWreckage'
 
+//'Leave and find Shelter', 'Stay inside'
+const leaveToFindShelter = 'leaveToFindShelter'
+const stayInside = 'stayInside'
 
+//'Enter the cave', 'Search for new spot'
+const enterTheCave = 'enterTheCave'
+const searchForNewSpot = 'searchForNewSpot'
+
+//playAgain, stopPlaying
+const playAgain = 'playAgain'
+const stopPlaying = 'stopPlaying'
+
+//confrontThem, hide
+const confrontThem = 'confronThem'
+const hide = 'hide'
+
+const returnToWreckage = 'returnToWreckage'
+const stayHidden = 'stayHidden'
+
+//'repairTheSystem', 'exploreFurther'
+const repairTheSystem = 'repairTheSystem'
+const exploreFurther = 'exploreFurther'
+
+let answerToPlayAgain = true
 
 /*------------------------ Cached Element References ------------------------*/
 buttonContainer.classList.add = 'options'
 
 
 
-
-
-
-
 /*----------------------------- Event Listeners -----------------------------*/
-
-addNameButton.addEventListener("click", handleGetUserName)
-
-
-
 
 
 /*-------------------------------- Functions --------------------------------*/
-const firstScreen = () => {
-    bodyElement.appendChild(page1h1Element)
-    page1h1Element.append(inputElement)
-    bodyElement.appendChild(addNameButton)
+const clearPage = () => {
+    //this is to remove everything inside the body
+    bodyElement.innerHTML = null
 }
 
 function handleGetUserName() {
-    userName = inputElement.value
-    isNameAdded()
-}
-const clearPage = () => {
-    //this is to remove everything inside the body
-    document.body.innerHTML = ""
-} 
-const isNameAdded = () => {
-    if (inputElement.value ) {
+    const inputTextName = inputElement.value
+
+    //check first what you want to happen
+    if(inputTextName === "") {
+        console.log('username is required')
+        alert("username is required")
+    } else {
+        userName = inputTextName
+        console.log(`${userName} has been assign to variable userName`)
+        
+        //clear the Page
         clearPage()
         secondScreen()
     }
-};
-
-const handleFirstAnswer = (event) => {
-    
-    const selectedOptionValue = event.target.id
-    
-    if(selectedOptionValue === 'firstOption1') {
-        answerToTheFirstOption = selectedOptionValue
-        isFirstQuestionAnswered(selectedOptionValue)
-    } else if(selectedOptionValue === 'secondOption1') {
-        answerToTheFirstOption = selectedOptionValue
-        isFirstQuestionAnswered(selectedOptionValue)
-    }
-    
 }
 
-const handleSecondAnswer = (event) => {
-    
-    const selectedOptionValue = event.target.id
-    console.log(selectedOptionValue)
-    if(selectedOptionValue === 'secondption2') {
-        answerToTheSecondOption = selectedOptionValue
-        isSecondQuestionAnswered(selectedOptionValue)
-    } else if(selectedOptionValue === 'secondOption2') {
-        answerToTheSecondOption = selectedOptionValue
-        isSecondQuestionAnswered(selectedOptionValue)
-    }
-    
-}
 
-const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
+//buttons
+const handleCrash = event => {
     
-    if(answerToTheFirstOptionParameter ===  'firstOption1') {
+    const option = event.target.id
+    //'searchWreckage', 'exitWreckage'
+    if(option === searchWreckage) {
+        answerToTheFirstOption = searchWreckage
+        console.log(answerToTheFirstOption)
         clearPage()
-        //go the next step
-        page1h1Element.innerText = `Search for Oxygen`
-        
-        pageh2Element.innerText = 
-        `${userName} you find the oxygen tank, but night is approaching faster than expected
-        do you leave the wreckage to search for shelter or stay inside ?`
-        
-
-
-        h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
-
-
-        
-
-        bodyElement.appendChild(page1h1Element)
-        bodyElement.appendChild(pageh2Element)
-        bodyElement.appendChild(h3Question)
-
-        handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption2', 'secondOption2')
-
-
-    }
-}
-
-const isSecondQuestionAnswered = (answerToTheSecondOptionParameter) => {
-
-    console.log(answerToTheSecondOptionParameter)
-    if(answerToTheSecondOptionParameter ===  'firstOption2') {
+        thirdScreen()
+    } else if (option === exitWreckage) {
+        answerToTheFirstOption = exitWreckage
         clearPage()
-        //go the next step
-        page1h1Element.innerText = `Alien Creature`
-        
-        pageh2Element.innerText = 
-        `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
-        
-
-
-        h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
-
-
-        
-
-        bodyElement.appendChild(page1h1Element)
-        bodyElement.appendChild(pageh2Element)
-        bodyElement.appendChild(h3Question)
-
-        handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption2', 'secondOption2')
-
-
+        thirdScreen()
+    }
+}
+const handleWreckage = event => {
+    const option = event.target.id
+    //'leaveToFindShelter', 'stayInside'
+    //confrontThem, hide
+    //returnToWreckage, stayHidden
+    
+    if(option === leaveToFindShelter) {
+        answerToTheSecondOption = leaveToFindShelter
+        console.log(answerToTheSecondOption)
+        clearPage()
+        fourthScreen()
+    } else if (option === stayInside) {
+        answerToTheSecondOption = stayInside
+        console.log(answerToTheSecondOption)
+        clearPage()
+        fourthScreen()
+    } else if (option === exitWreckage) {
+        answerToTheSecondOption = stayInside
+        clearPage()
+        fourthScreen()
+    } else if(option === confrontThem) {
+        answerToTheSecondOption = confrontThem
+        console.log(answerToTheSecondOption)
+        clearPage()
+        fourthScreen()
+    }else if(option === hide) {
+        answerToTheSecondOption = hide
+        console.log(answerToTheSecondOption)
+        clearPage()
+        fourthScreen()
+    } else if(option === returnToWreckage) {
+        answerToTheThirdOption = returnToWreckage
+        console.log(answerToTheThirdOption)
+        clearPage()
+        fifthScreen()
+    } else if (option === stayHidden) {
+        answerToTheThirdOption = stayHidden
+        console.log(answerToTheThirdOption)
+        clearPage()
+        fifthScreen()
     }
 }
 
-const handleOptionCreation = (optionButton1Text, optionButton2Text, firstChoice, secondChoice) => {
+const handleStayInsideOrExploreFurther = event => {
+    const option = event.target.id
+    
+    //repairTheSystem,exploreFurther
+
+   
+    if(option === repairTheSystem) {
+        answerToTheThirdOption = repairTheSystem
+        console.log(answerToTheThirdOption)
+        clearPage()
+        fifthScreen()
+    } else if (option === exploreFurther) {
+        answerToTheThirdOption = exploreFurther
+        console.log(answerToTheThirdOption)
+        clearPage()
+        fifthScreen()
+    }
+}
+
+const handleEnterCave = event => {
+    const option = event.target.id
+    //enterTheCave, searchForNewSpot
+
+    if(option === enterTheCave) {
+        answerToTheThirdOption = enterTheCave
+        console.log(answerToTheSecondOption)
+        clearPage()
+        fifthScreen()
+    } else if (option === searchForNewSpot) {
+        answerToTheThirdOption = searchForNewSpot
+        clearPage()
+        fifthScreen()
+    }
+}
+
+const handlePlayAgain = (event) => {
+    const option = event.target.id
+    console.log(option)
+    if(option === playAgain) {
+        answerToPlayAgain = true
+        window.location.reload()
+    } else {
+        answerToPlayAgain = false
+        alert('Ok Goodbye!')
+        clearPage()
+
+        goodByText.innerText = `Game Still on development... Thank You for playing`
+        bodyElement.append(goodByText)
+    }
+}
+
+const handleOptionCreation = (optionButton1Text, optionButton2Text, choice, choice2) => {
     
 
 
@@ -160,8 +206,8 @@ const handleOptionCreation = (optionButton1Text, optionButton2Text, firstChoice,
     //optionButton2.innerText = 'Exit Wreckage'
     optionButton2.innerText = optionButton2Text
 
-    optionButton1.setAttribute('id', firstChoice)
-    optionButton2.setAttribute('id', secondChoice)
+    optionButton1.setAttribute('id', choice)
+    optionButton2.setAttribute('id', choice2)
 
     buttonContainer.appendChild(optionButton1)
     buttonContainer.appendChild(optionButton2)
@@ -170,35 +216,375 @@ const handleOptionCreation = (optionButton1Text, optionButton2Text, firstChoice,
 
 }
 
-const secondScreen = () => {
- page1h1Element.innerText = secondScreenh1   
-bodyElement.appendChild(page1h1Element)
-const secondScreenPara = document.createElement("p")
-secondScreenPara.innerText = `You wake up in your wrecked spaceship ${userName}, alarms blaring,
-with limited time to act.`
-bodyElement.appendChild(secondScreenPara)
-bodyElement.append(h3Question.innerHTML = 'What do you do first \n')
+const updateConversation = (h1, paragraph, h3) => {
+    //update title
+    bodyElement.appendChild(h1)
+    //update the paragraph
+    bodyElement.appendChild(paragraph)
+    //update question
+    bodyElement.appendChild(h3)
+}
 
+const firstScreen = () => {
 
-handleOptionCreation('Search the Wreckage', 'Exit Wreckage', 'firstOption1', 'secondOption1')
+    //add the title
+    bodyElement.appendChild(pageH1Header)
+    //add the input text
+    bodyElement.appendChild(inputElement)
+    //addNameButton
+    bodyElement.appendChild(addNameButton)
 
-
-
-
-
-buttonContainer.addEventListener('click', handleFirstAnswer)
-console.log(buttonContainer)
-buttonContainer.addEventListener('click', handleSecondAnswer)
+    //added the first event
+    addNameButton.addEventListener("click", handleGetUserName)
 
 }
 
 
+const secondScreen = () => {
+    
+    //will only execute if userName value is not equals to false
+    
+    if(userName !== "") {
+        //update the title
+        pageH1Header.innerText = 'The Crash'
+        screenParagraph.innerText = 
+            `You wake up in your wrecked spaceship ${userName}, alarms blaring,
+            with limited time to act.`
+            h3Header.innerText = 'What do you do first ?'
 
-// game progression
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+        handleOptionCreation('Search the Wreckage', 'Exit Wreckage', searchWreckage, exitWreckage)
+        
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => {
+            button.addEventListener('click', handleCrash)
+        })
+        doIt()
+
+    } else {
+        alert('name cannot be empty')
+    }
+   
+}
+
+const thirdScreen = () => {
+    if(answerToTheFirstOption === searchWreckage) {
+        //user select searchWreckage
+        pageH1Header.innerText = `Search the Wreckage`
+        screenParagraph.innerText = 
+        `${userName} you find the oxygen tank, but night is approaching faster than expected
+        do you leave the wreckage to search for shelter or stay inside ?`
+        
+        h3Header.innerText = 'What do you do second ?'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+
+        handleOptionCreation('Leave to find Shelter', 'Stay inside', leaveToFindShelter, stayInside)
+
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handleWreckage))
+        doIt()
+
+    } else if (answerToTheFirstOption === exitWreckage) {
+        //user select exitWreckage
+        pageH1Header.innerText = `Leave the Wreckage`
+        screenParagraph.innerText = 
+        `${userName} you see alien creatures approaching. Do you confront the creatures or hide ?`
+        
+        h3Header.innerText = 'What do you do second ?'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        handleOptionCreation('Confront them', 'Hide', confrontThem, hide)
+
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handleWreckage))
+        doIt()
+    } else {
+        //do nothing
+        console.log('test')
+    }
+}
+
+const fourthScreen = () => {
+
+    
+    if(answerToTheSecondOption === leaveToFindShelter) {
+        
+        //user select leaveToFindShelter
+        pageH1Header.innerText = `Leave to find Shelter`
+        screenParagraph.innerText = 
+        `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
+        
+        h3Header.innerText = 'What do you do third ?'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+
+        handleOptionCreation('enter the cave', 'Search for a new spot', enterTheCave, searchForNewSpot)
+
+        //optionButton1.addEventListener('click', handleEnterCave)
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handleEnterCave))
+        doIt()
+
+    } else if (answerToTheSecondOption === stayInside) {
+        //user select leaveToFindShelter
+        pageH1Header.innerText = `Stay Inside`
+        screenParagraph.innerText = 
+        `${userName} You survived the night but the risk long term exposure to the environment..`
+        
+        h3Header.innerText = 'What do you do third ?'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+
+        handleOptionCreation('Repair the System', 'Explore Further', repairTheSystem, exploreFurther)
+
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handleStayInsideOrExploreFurther))
+        doIt()
+
+    }else if (answerToTheSecondOption === exitWreckage) {
+        console.log(leaveToFindShelter, 'this is the fourth screen exitWreckage')
+    } else if(answerToTheSecondOption === confrontThem){
+        
+        //user select leaveToFindShelter
+        pageH1Header.innerText = `Confront Them`
+        screenParagraph.innerText = 
+        `${userName} You scare them off but sustain injuries. after 2 hours the creatures poison killed you`
+        
+        h3Header.innerText = 'You Lose ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+
+    }else if(answerToTheSecondOption === hide){
+        
+        //user select leaveToFindShelter
+        pageH1Header.innerText = `Hide`
+        screenParagraph.innerText = 
+        `${userName} You find a safe hiding spot but lose track of the time`
+        
+        h3Header.innerText = 'What do you do third ?'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+
+        handleOptionCreation('Return to Wreckage', 'Stay Hidden', returnToWreckage, stayHidden)
+
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handleWreckage))
+        doIt()
+
+    } else {
+        console.log('test fourth')
+    }
+}
+
+
+const fifthScreen = () => {
+    if(answerToTheThirdOption === enterTheCave) {
+        
+        //user select leaveToFindShelter
+        pageH1Header.innerText = `Enter the Cave`
+        screenParagraph.innerText = 
+        `${userName} after a year.. search and rescue team found you in the cave and brought you back to your planet`
+        
+        h3Header.innerText = 'You Survived ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+    } else if (answerToTheThirdOption === searchForNewSpot) {
+        
+        //user select leaveToFindShelter
+        pageH1Header.innerText = `Searching for New Spot`
+        screenParagraph.innerText = 
+        `${userName} while searching for new spot you found a glowing mushroom and you ate it then you die`
+        
+        h3Header.innerText = 'You Lose ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+
+    } else if (answerToTheThirdOption === returnToWreckage) {
+        //user select returnToWreckage
+        pageH1Header.innerText = `Return to Wreckage`
+        screenParagraph.innerText = 
+        `${userName} you went to the wreckage and millions of creatures are there but rescue team is there as well after almost 2 hours of war the creatures were eradicated and you return to your home planet safely`
+        
+        h3Header.innerText = 'You Survived ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+    }else if (answerToTheThirdOption === stayHidden) {
+        //user select stayHidden
+        pageH1Header.innerText = `Stay Hidden`
+        screenParagraph.innerText = 
+        `${userName} You survived for the next 4 days but died on the fifth`
+        
+        h3Header.innerText = 'You Lose ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+    } else if (answerToTheThirdOption === repairTheSystem) {
+        //user repaired the system
+        pageH1Header.innerText = `Repair The System`
+        screenParagraph.innerText = 
+        `${userName} After repairing the system you established connection with your planet and sent the rescue team `
+        
+        h3Header.innerText = 'You Survived ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+    } else if (answerToTheThirdOption === exploreFurther) {
+        //user exploredFurther
+        pageH1Header.innerText = `Explore Further`
+        screenParagraph.innerText = 
+        `${userName} after 2 months of exploring an asteroid hits the planet.. and you die`
+        
+        h3Header.innerText = 'You Lose ! Do you want to play again'
+
+        updateConversation(pageH1Header, screenParagraph, h3Header)
+        
+
+        handleOptionCreation('Play Again', 'Stop Playing', playAgain, stopPlaying)
+
+        
+        const doIt = [optionButton1, optionButton2].forEach( button => button.addEventListener('click', handlePlayAgain))
+        doIt()
+    } else {
+        console.log(answerToTheThirdOption)
+        console.log('test fifth')
+    }
+}
 
 firstScreen()
-handleGetUserName()
-// clearPage()
-isNameAdded()
-isFirstQuestionAnswered()
-isSecondQuestionAnswered()
+
+// const isFirstQuestionAnswered = (answerToTheFirstOptionParameter) => {
+    
+//     console.log(answerToTheFirstOptionParameter)
+//     if(answerToTheFirstOptionParameter ===  'firstOption1') {
+//         clearPage()
+//         //go the next step
+//         page1h1Element.innerText = `Search for Oxygen`
+        
+//         pageh2Element.innerText = 
+//         `${userName} you find the oxygen tank, but night is approaching faster than expected
+//         do you leave the wreckage to search for shelter or stay inside ?`
+        
+
+
+//         h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
+
+
+//         bodyElement.appendChild(page1h1Element)
+//         bodyElement.appendChild(pageh2Element)
+//         bodyElement.appendChild(h3Question)
+
+//         //handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption2', 'secondOption2')
+
+
+//     }
+// }
+
+// const isSecondQuestionAnswered = (answerToTheSecondOptionParameter) => {
+
+//     console.log(answerToTheSecondOptionParameter, 'test')
+//     if(answerToTheSecondOption ===  'firstOption2') {
+//         clearPage()
+//         //go the next step
+//         page1h1Element.innerText = `Alien Creature`
+        
+//         pageh2Element.innerText = 
+//         `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
+        
+//         h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
+
+//         bodyElement.appendChild(page1h1Element)
+//         bodyElement.appendChild(pageh2Element)
+//         bodyElement.appendChild(h3Question)
+
+//         handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption3', 'secondOption3')
+
+
+//     }
+// }
+
+
+// const handleFirstAnswer = event => {
+    
+//     const selectedOptionValue = event.target.id
+    
+//     if(selectedOptionValue === 'firstOption1') {
+//         answerToTheFirstOption = selectedOptionValue
+
+//         page1h1Element.innerText = `Search for Oxygen`
+        
+//         pageh2Element.innerText = 
+//         `${userName} you find the oxygen tank, but night is approaching faster than expected
+//         do you leave the wreckage to search for shelter or stay inside ?`
+        
+
+
+//         h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
+
+//     } else if(selectedOptionValue === 'secondOption1') {
+//         answerToTheFirstOption = selectedOptionValue
+
+//     }
+    
+// }
+
+
+// const isNameAdded = () => {
+//     console.log(isNameAdded)
+//     if (userName !== "") {
+//         console.log(userName)
+//         clearPage()
+//         secondScreen()
+//     }
+// };
+
+
+
+// const handleSecondAnswer = event => {
+    
+//     const selectedOptionValue = event.target.id
+
+    
+//     if(selectedOptionValue === 'firstOption2') {
+//         answerToTheSecondOption = selectedOptionValue
+//         isSecondQuestionAnswered(selectedOptionValue)
+//     } else if(selectedOptionValue === 'secondOption2') {
+//         answerToTheSecondOption = selectedOptionValue
+//         isSecondQuestionAnswered(selectedOptionValue)
+//     }
+// }
