@@ -16,7 +16,7 @@ let userName = ""
 let secondScreenh1 = "The Crash"
 let answerToTheFirstOption = '';
 let answerToTheSecondOption = '';
-
+let answerToTheThirdOption = '';
 
 
 /*-------------------------------- Variables --------------------------------*/
@@ -85,12 +85,26 @@ const handleSecondAnswer = (event) => {
     
     const selectedOptionValue = event.target.id
     console.log(selectedOptionValue)
-    if(selectedOptionValue === 'secondption2') {
+    if(selectedOptionValue === 'firstOption2') {
         answerToTheSecondOption = selectedOptionValue
         isSecondQuestionAnswered(selectedOptionValue)
     } else if(selectedOptionValue === 'secondOption2') {
         answerToTheSecondOption = selectedOptionValue
         isSecondQuestionAnswered(selectedOptionValue)
+    }
+    
+}
+
+const handleThirdAnswer = (event) => {
+    
+    const selectedOptionValue = event.target.id
+    console.log(selectedOptionValue)
+    if(selectedOptionValue === 'firstOption3') {
+        answerToTheThirdOption = selectedOptionValue
+        isThirdQuestionAnswered(selectedOptionValue)
+    } else if(selectedOptionValue === 'secondOption3') {
+        answerToTheThirdOption = selectedOptionValue
+        isThirdQuestionAnswered(selectedOptionValue)
     }
     
 }
@@ -136,7 +150,7 @@ const isSecondQuestionAnswered = (answerToTheSecondOptionParameter) => {
         
 
 
-        h3Question.innerHTML = 'What do you do second ? leave to find shelter stay in the wreckage'
+        h3Question.innerHTML = 'Enter the cave(leads to new challenges inside). or Search for a new spot(danger of exposure to elements).'
 
 
         
@@ -145,8 +159,37 @@ const isSecondQuestionAnswered = (answerToTheSecondOptionParameter) => {
         bodyElement.appendChild(pageh2Element)
         bodyElement.appendChild(h3Question)
 
-        handleOptionCreation('leave shelter', 'stay in Wreckage', 'firstOption2', 'secondOption2')
+        handleOptionCreation('Enter cave', 'Search for new spot', 'firstOption3', 'secondOption3')
 
+
+    }
+}
+
+
+
+const isThirdQuestionAnswered = (answerToTheThirdOptionParameter) => {
+    console.log(answerToTheThirdOptionParameter, "test test")
+    if(answerToTheThirdOptionParameter ===  'firstOption3') {
+        clearPage()
+        // go the next step
+        page1h1Element.innerText = `The Encounter`
+        
+        pageh2Element.innerText = 
+        `${userName} You encounter dangerous alien creatures in the distance but find a cave.`
+        
+
+
+        h3Question.innerHTML = 'Enter the cave(leads to new challenges inside). or Search for a new spot(danger of exposure to elements).'
+
+
+        
+
+        bodyElement.appendChild(page1h1Element)
+        bodyElement.appendChild(pageh2Element)
+        bodyElement.appendChild(h3Question)
+
+        handleOptionCreation('Enter cave', 'Search for new spot', 'firstOption4', 'secondOption4')
+        
 
     }
 }
@@ -189,7 +232,7 @@ handleOptionCreation('Search the Wreckage', 'Exit Wreckage', 'firstOption1', 'se
 buttonContainer.addEventListener('click', handleFirstAnswer)
 console.log(buttonContainer)
 buttonContainer.addEventListener('click', handleSecondAnswer)
-
+buttonContainer.addEventListener('click', handleThirdAnswer)
 }
 
 
@@ -202,3 +245,4 @@ handleGetUserName()
 isNameAdded()
 isFirstQuestionAnswered()
 isSecondQuestionAnswered()
+isThirdQuestionAnswered()
