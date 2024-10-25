@@ -2,7 +2,19 @@
 body {
     background-color: black;
     color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+    margin: 0px auto;
 }
 h1 {
-    color: green;
+    color: rgb(255, 128, 0);
+    margin-top: 5rem;
+    text-align: center;
+}
+
+
+#userNameInputText {
+    background-color: red;
 }

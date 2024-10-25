@@ -72,6 +72,8 @@ const clearPage = () => {
 function handleGetUserName() {
     const inputTextName = inputElement.value
 
+    
+
     //check first what you want to happen
     if(inputTextName === "") {
         console.log('username is required')
@@ -230,8 +232,15 @@ const firstScreen = () => {
     //add the title
     bodyElement.appendChild(pageH1Header)
     //add the input text
+
+    inputElement.style.height = '30px'
+    inputElement.placeholder = 'Your name'
+    inputElement.style.paddingLeft = '15px'
     bodyElement.appendChild(inputElement)
     //addNameButton
+
+    addNameButton.style.height = '60px'
+    addNameButton.style.marginTop = '5rem'
     bodyElement.appendChild(addNameButton)
 
     //added the first event
